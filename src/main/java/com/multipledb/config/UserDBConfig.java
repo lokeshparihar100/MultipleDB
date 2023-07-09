@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", basePackages = {
-		"com.javatechie.multiple.ds.api.repository.user" })
+		"com.multipledb.repository.user" })
 public class UserDBConfig {
 	// Create Bean of MySQL properties which is define in application.properties and define this as Primary DB
 	@Primary
@@ -41,10 +41,13 @@ public class UserDBConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("dataSource") DataSource dataSource) {
 		HashMap<String, Object> properties = new HashMap<>();
+		// 'update' -> if not exist then create and update
+		// 'none' -> do nothing
+		// 'create' -> Create Table
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		return builder.dataSource(dataSource).properties(properties)
-				.packages("com.javatechie.multiple.ds.api.model.user").persistenceUnit("User").build();
+				.packages("com.multipledb.model.user").persistenceUnit("User").build();
 	}
 
 	// Create Transaction Manager to handle the MySQL request
