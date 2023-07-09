@@ -8,6 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+* User entity for User_TB table in MySQL
+* Lombok will provide Getter, Setter, toString, Constructor, etc
+*/
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
