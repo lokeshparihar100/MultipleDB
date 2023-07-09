@@ -8,6 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+* Book entity for Book_TB table in PostgreSQL
+* Labok will provide Getter, Setter, toString, Constructor, etc
+*/
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
