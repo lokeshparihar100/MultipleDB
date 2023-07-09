@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "spring.book.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.multipledb.config.BookDBConfig",
+      "sourceMethod": "public javax.sql.DataSource dataSource() "
+    },
+    {
+      "name": "spring.user.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.multipledb.config.UserDBConfig",
+      "sourceMethod": "public javax.sql.DataSource dataSource() "
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
