@@ -17,18 +17,23 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/*
+* Configure PostgreSQL for Book Entity
+*/
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "bookEntityManagerFactory", transactionManagerRef = "bookTransactionManager", basePackages = {
-		"com.javatechie.multiple.ds.api.repository.book" })
+		"com.multipledb.repository.book" })
 public class BookDBConfig {
-
+	// Create Bean of PostgreSQL properties which is define in application.properties
 	@Bean(name = "bookDataSource")
 	@ConfigurationProperties(prefix = "spring.book.datasource")
 	public DataSource dataSource() {
 		return DataSourceBuilder.create().build();
 	}
 
+	// Create Bean of Entity Manager
 	@Bean(name = "bookEntityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean bookEntityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("bookDataSource") DataSource dataSource) {
@@ -36,9 +41,10 @@ public class BookDBConfig {
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		return builder.dataSource(dataSource).properties(properties)
-				.packages("com.javatechie.multiple.ds.api.model.book").persistenceUnit("Book").build();
+				.packages("com.multipledb.model.book").persistenceUnit("Book").build();
 	}
 
+	// Create Transaction Manager to handle the PostgreSQL request
 	@Bean(name = "bookTransactionManager")
 	public PlatformTransactionManager bookTransactionManager(
 			@Qualifier("bookEntityManagerFactory") EntityManagerFactory bookEntityManagerFactory) {
