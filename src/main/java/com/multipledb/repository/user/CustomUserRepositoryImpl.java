@@ -9,6 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.multipledb.model.user.User;
 
+/*
+* Class to extract the number of Users passing in Limit variable
+* EntityManager is used to create the query, set Limit and convert Result in List
+*/
+
 @Repository
 public class CustomUserRepositoryImpl implements CustomUserRepository{
 
