@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 /*
 * Book entity for Book_TB table in PostgreSQL
-* Labok will provide Getter, Setter, toString, Constructor, etc
+* Lombok will provide Getter, Setter, toString, Constructor, etc
 */
 
 @Data
