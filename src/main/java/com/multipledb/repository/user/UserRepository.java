@@ -7,18 +7,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.multipledb.model.user.User;
 
+/*
+* UserRepository interface using JpaRepository<Entity, TypeOf @Id> & CustomUserRepository
+*/
+
 public interface UserRepository extends JpaRepository<User, Integer>, CustomUserRepository {
 
-	User findFirstByOrderByIdAsc();
+	User findFirstByOrderByIdAsc();				// This will sort by ID in Assending order and extract 1st record
 
-    User findTopByOrderByIdAsc();
+    User findTopByOrderByIdAsc();				// This will sort by ID in Assending order and extract 1st record
 
-    List<User> findByOrderByIdAsc();
+    List<User> findByOrderByIdAsc();				// This will sort by ID in Assending order and extract 1st record
 
-    List<User> findByUserNameIgnoreCase(String userName);
+    List<User> findByUserNameIgnoreCase(String userName);	// This will extract the record for given userName
 
-    List<User> findByUserNameOrderByIdAsc(String userName);
-
-    List<User> findByUserName(String userName, Sort sort);
-
+    List<User> findByUserNameOrderByIdAsc(String userName);	// This will extract the record for given userName. If more than 1 record with same userName then sort by ID in Assending order	
 }
