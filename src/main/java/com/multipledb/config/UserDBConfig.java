@@ -18,11 +18,16 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/*
+* Configure MySQL for Book Entity
+*/
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", basePackages = {
 		"com.javatechie.multiple.ds.api.repository.user" })
 public class UserDBConfig {
+	// Create Bean of MySQL properties which is define in application.properties and define this as Primary DB
 	@Primary
 	@Bean(name = "dataSource")
 	@ConfigurationProperties(prefix = "spring.user.datasource")
@@ -30,6 +35,7 @@ public class UserDBConfig {
 		return DataSourceBuilder.create().build();
 	}
 
+	// Create Bean of Entity Manager
 	@Primary
 	@Bean(name = "entityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder,
@@ -41,6 +47,7 @@ public class UserDBConfig {
 				.packages("com.javatechie.multiple.ds.api.model.user").persistenceUnit("User").build();
 	}
 
+	// Create Transaction Manager to handle the MySQL request
 	@Primary
 	@Bean(name = "transactionManager")
 	public PlatformTransactionManager transactionManager(
