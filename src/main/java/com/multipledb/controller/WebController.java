@@ -90,13 +90,6 @@ public class WebController {
 		return userRepository.findByUserNameOrderByIdAsc(name);
 	}
 
-	// URL: http://localhost:8080/getUserOrder/John
-	@GetMapping("getUserOrder/{name}")
-	public List<User> findByUserName(@PathVariable String name) {
-		Sort sortBy = Sort.by(new Sort.Order(Sort.Direction.ASC, "id"));
-		return userRepository.findByUserName(name, sortBy);
-	}
-
 	// URL: http://localhost:8080/getUserLimit/5
 	@GetMapping("getUserLimit/{num}")
 	public List<User> findOrderedByIdLimitedTo(@PathVariable Integer num) {
